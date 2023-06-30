@@ -3,7 +3,7 @@ import {container} from 'tsyringe';
 import {TicketController as TicketControllerMobility} from "../../../controllers/customers/mobility/ticketController";
 
 const router = express.Router();
-const mobilityController = container.resolve<TicketControllerMobility>('TicketControllerMobility');
+const mobilityController = container.resolve<TicketControllerMobility>('TicketController');
 
 
 // Định nghĩa các tuyến đường (routes) cho ticket

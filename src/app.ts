@@ -7,10 +7,8 @@ import {maximumTimPerRequest} from "./middlewares/authMiddleware";
 import {CONFIG} from "./config/constants";
 import createConnection from "./config/databases/mysql.config";
 
-import { TicketService as TicketServiceMobility } from "./services/customers/mobility/ticketService";
-import { TicketService as TicketServiceKeolis } from "./services/customers/keolis/ticketService";
-import { TicketController as TicketControllerMobility } from "./controllers/customers/mobility/ticketController";
-import { TicketController as TicketControllerKeolis } from "./controllers/customers/keolis/ticketController";
+import {BaseTicketService as TicketService} from "./services/common/ticketService";
+import {BaseTicketController as TicketController} from "./controllers/common/ticketController";
 
 
 async function bootstrap() {
@@ -54,13 +52,11 @@ async function bootstrap() {
 
 createConnection().then((connection: Connection) => {
     // Đăng ký kết nối vào DI container
-    container.register<Connection>('Connection', { useValue: connection });
+    container.register<Connection>('Connection', {useValue: connection});
 
     // Đăng ký controller và service vào DI container
-    container.register("TicketServiceMobility", { useClass: TicketServiceMobility });
-    container.register("TicketServiceKeolis", { useClass: TicketServiceKeolis });
-    container.register("TicketControllerMobility", { useClass: TicketControllerMobility });
-    container.register("TicketControllerKeolis", { useClass: TicketControllerKeolis });
+    container.register("TicketService", {useClass: TicketService});
+    container.register("TicketController", {useClass: TicketController});
 
 
     bootstrap();
