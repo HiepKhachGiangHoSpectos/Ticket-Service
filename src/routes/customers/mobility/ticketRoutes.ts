@@ -1,16 +1,20 @@
-import express, {Request, Response} from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 import {container} from 'tsyringe';
-import {TicketController as TicketControllerMobility} from "../../../controllers/customers/mobility/ticketController";
+import {TicketController} from "../../../controllers/customers/mobility/ticketController";
 
 const router = express.Router();
-const mobilityController = container.resolve<TicketControllerMobility>('TicketController');
+const mobilityController = container.resolve<TicketController>('TicketControllerMobility');
 
 
 // Định nghĩa các tuyến đường (routes) cho ticket
 
 // Route GET /ticket
-router.get('/', (req: Request, res: Response) => {
-    mobilityController.getCustomers(req, res);
+router.get('/', (req: Request, res: Response, next: NextFunction) => {
+    try {
+        mobilityController.getCustomers(req, res, next);
+    } catch (error) {
+        next(error);
+    }
 });
 
 // Route POST /ticket

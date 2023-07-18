@@ -1,5 +1,5 @@
 // Middleware để xử lý vấn đề CORS (Cross-Origin Resource Sharing), cho phép các yêu cầu từ nguồn khác được truy cập vào tài nguyên của server.
-import {Request, Response, NextFunction} from 'express';
+import {NextFunction, Request, Response} from 'express';
 
 export function corsMiddleware(req: Request, res: Response, next: NextFunction) {
     res.setHeader('Access-Control-Allow-Origin', '*');

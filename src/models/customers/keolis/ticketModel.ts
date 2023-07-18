@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, ObjectIdColumn, ObjectId, Column } from "typeorm"
-import { v4 as uuid } from 'uuid';
+import {Column, Entity, PrimaryGeneratedColumn} from "typeorm"
+import {v4 as uuid} from 'uuid';
+
 @Entity()
 export class User {
 

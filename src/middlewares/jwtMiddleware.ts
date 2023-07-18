@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction} from 'express';
+import {NextFunction, Request, Response} from 'express';
 import {JWT_CONFIG} from "../config/constants";
 import jwt from 'jsonwebtoken';
 import * as _ from 'lodash';

@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Route GET /ticket
 router.get('/', (req, res) => {
-    // Xử lý logic cho GET /ticket
+    console.log('ssssssssssssssssss');
 });
 
 // Route POST /ticket

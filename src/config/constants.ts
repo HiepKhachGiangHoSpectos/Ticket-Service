@@ -25,3 +25,27 @@ export const CONFIG = {
         'keolis', 'mobility'
     ]
 }
+
+export const DATABASES = {
+    common: {
+        USER_NAME: 'BaoQuanHan',
+        PASSWORD: 'HoaiAn260198',
+        DATABASE: 'dev_ticket_service_common',
+        DB_HOST: 'localhost',
+        PORT: 3306
+    },
+    keolis: {
+        USER_NAME: 'BaoQuanHan',
+        PASSWORD: 'HoaiAn260198',
+        DATABASE: 'dev_ticket_service_keolis',
+        DB_HOST: 'localhost',
+        PORT: 3306
+    },
+    mobility: {
+        USER_NAME: 'BaoQuanHan',
+        PASSWORD: 'HoaiAn260198',
+        DATABASE: 'dev_ticket_service_mobility',
+        DB_HOST: 'localhost',
+        PORT: 3306
+    }
+}
