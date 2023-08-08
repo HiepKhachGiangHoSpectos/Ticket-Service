@@ -1,6 +1,10 @@
 import {Connection, createConnection as createMysqlConnection} from 'typeorm';
 import {CONFIG, DATABASES} from "../../constants";
+import {User} from "../../../models/customers/keolis/ticketModel";
 
+/**
+ * khong duoc set  synchronize: true on product, because some columm will be delete add
+ */
 export default async function createKeolisConnection(): Promise<Connection> {
     console.log('===================== CREATING KEOLIS CONNECTION ==============');
     return await createMysqlConnection({
@@ -10,11 +14,10 @@ export default async function createKeolisConnection(): Promise<Connection> {
         username: DATABASES.keolis.USER_NAME,
         password: DATABASES.keolis.PASSWORD,
         database: DATABASES.keolis.DATABASE,
-        synchronize: true,
+        synchronize: false,
         name: 'ticket_service_keolisConnection',
         entities: [
-            `${__dirname}\\models\\customers\\*\\*.js`,
-            `${__dirname}\\models\\common\\*.js`,
+            User
         ]
     });
 }

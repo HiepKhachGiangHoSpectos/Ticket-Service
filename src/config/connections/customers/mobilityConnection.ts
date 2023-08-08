@@ -1,5 +1,6 @@
 import {Connection, createConnection as createMysqlConnection} from 'typeorm';
 import {CONFIG, DATABASES} from "../../constants";
+import {User} from "../../../models/customers/mobility/ticketModel";
 
 export default async function createMobilityConnection(): Promise<Connection> {
     console.log('===================== CREATING MOBILITY CONNECTION ==============');
@@ -10,11 +11,10 @@ export default async function createMobilityConnection(): Promise<Connection> {
         username: DATABASES.mobility.USER_NAME,
         password: DATABASES.mobility.PASSWORD,
         database: DATABASES.mobility.DATABASE,
-        synchronize: true,
+        synchronize: false,
         name: 'ticket_service_mobilityConnection',
         entities: [
-            `${__dirname}\\models\\customers\\*\\*.js`,
-            `${__dirname}\\models\\common\\*.js`,
+            User
         ]
     });
 }

@@ -3,8 +3,7 @@ import {v4 as uuid} from 'uuid';
 
 @Entity()
 export class User {
-
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: string
 
     @Column()

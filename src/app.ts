@@ -29,7 +29,7 @@ async function bootstrap() {
     app.use(maximumTimPerRequest(CONFIG.TIME_OUT_MAXIMUM));
 
     app.use((req: Request, res: Response, next) => {
-        const customerType: string = req.customerType;
+        const customerType = req.customerType;
         if (customerType !== 'basic') {
             try {
                 import(`./routes/customers/${customerType}/ticketRoutes`).then((customerRouter) => {

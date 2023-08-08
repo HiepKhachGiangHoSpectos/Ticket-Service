@@ -1,16 +1,16 @@
-import express from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 
 const router = express.Router();
 
 // Định nghĩa các tuyến đường (routes) cho ticket
 
 // Route GET /ticket
-router.get('/', (req, res) => {
+router.get('/', (req: Request, res: Response, next: NextFunction) => {
     console.log('ssssssssssssssssss');
 });
 
 // Route POST /ticket
-router.post('/', (req, res) => {
+router.post('/', (req: Request, res: Response, next: NextFunction) => {
     // Xử lý logic cho POST /ticket
 });
 

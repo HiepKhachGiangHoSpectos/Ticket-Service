@@ -21,7 +21,7 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
 // Route POST /ticket
 router.post('/', (req: Request, res: Response, next: NextFunction) => {
     try {
-        keolisController.getCustomers(req, res, next);
+        keolisController.saveUser(req, res, next);
     } catch (error) {
         next(error);
     }
