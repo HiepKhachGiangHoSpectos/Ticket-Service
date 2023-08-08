@@ -18,4 +18,13 @@ export class TicketController extends BaseTicketController {
             next(e);
         }
     }
+
+    async saveUser(req: Request, res: Response, next: NextFunction) {
+        try {
+            const user = await this.ticketService.saveUser();
+            res.status(200).json({data: user});
+        } catch (e) {
+            next(e);
+        }
+    }
 }

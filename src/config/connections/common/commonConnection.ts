@@ -1,5 +1,6 @@
 import {Connection, createConnection as createMysqlConnection} from 'typeorm';
 import {CONFIG, DATABASES} from "../../constants";
+import {User} from "../../../models/common/ticketModel";
 
 export default async function createCommonConnection(): Promise<Connection> {
     console.log('===================== CREATING COMMON CONNECTION ==============');
@@ -10,11 +11,10 @@ export default async function createCommonConnection(): Promise<Connection> {
         username: DATABASES.common.USER_NAME,
         password: DATABASES.common.PASSWORD,
         database: DATABASES.common.DATABASE,
-        synchronize: true,
+        synchronize: false,
         name: 'ticket_service_commonConnection',
         entities: [
-            `${__dirname}\\models\\customers\\*\\*.js`,
-            `${__dirname}\\models\\common\\*.js`,
+            User
         ]
     });
 }
