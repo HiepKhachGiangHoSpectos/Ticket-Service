@@ -1,20 +1,22 @@
-import {Connection, createConnection as createMysqlConnection} from 'typeorm';
+import {DataSource} from 'typeorm';
 import {CONFIG, DATABASES} from "../../constants";
-import {User} from "../../../models/common/ticketModel";
+import {Ticket} from "../../../models/common/ticketModel";
 
-export default async function createCommonConnection(): Promise<Connection> {
+export default async function createCommonConnection(): Promise<DataSource> {
     console.log('===================== CREATING COMMON CONNECTION ==============');
-    return await createMysqlConnection({
-        type: 'mysql',
-        host: DATABASES.common.DB_HOST || CONFIG.MYSQL_CONFIG.DB_HOST,
-        port: DATABASES.common.PORT || CONFIG.MYSQL_CONFIG.PORT,
+    const dataSource = new DataSource({
+        type: 'mongodb',
+        host: DATABASES.common.DB_HOST || CONFIG.MONGODB_CONFIG.DB_HOST,
+        port: DATABASES.common.PORT || CONFIG.MONGODB_CONFIG.PORT,
         username: DATABASES.common.USER_NAME,
         password: DATABASES.common.PASSWORD,
-        database: DATABASES.common.DATABASE,
         synchronize: false,
         name: 'ticket_service_commonConnection',
         entities: [
-            User
+            Ticket
         ]
     });
+    await dataSource.initialize();
+    console.log('===================== COMMON CONNECTION CREATED ==============');
+    return dataSource;
 }

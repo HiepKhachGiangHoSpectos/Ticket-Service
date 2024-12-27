@@ -1,18 +1,9 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm"
-import {v4 as uuid} from 'uuid';
-
+import { Entity, ObjectIdColumn, ObjectId, Column } from 'typeorm';
 @Entity()
-export class User {
-
-    @PrimaryGeneratedColumn('uuid')
-    id: string
-
-    @Column()
-    firstName: string
+export class Ticket {
+    @ObjectIdColumn()
+    id: ObjectId;
 
     @Column()
-    lastName: string
-
-    @Column()
-    age: number
+    title: string;
 }

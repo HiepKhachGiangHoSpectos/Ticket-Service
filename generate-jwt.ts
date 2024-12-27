@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 const payload = {
     username: 'exampleUser',
-    customerType: 'scscdc'
+    customerType: 'keolis'
 };
 
 const secretKey = JWT_CONFIG.SECRET_KEY;

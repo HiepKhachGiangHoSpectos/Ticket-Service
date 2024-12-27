@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import {Connection} from 'typeorm';
+import {DataSource} from 'typeorm';
 import {container} from "tsyringe";
 import express, {Application, Request, Response} from 'express';
 import {globalErrorHandler} from "./middlewares/errorMiddleware";
@@ -57,17 +57,17 @@ async function bootstrap() {
     });
 }
 
-createCommonConnection().then(async (commonConnection: Connection) => {
+createCommonConnection().then(async (commonConnection: DataSource) => {
     // Đăng ký kết nối vào DI container
-    container.register<Connection>('Connection', {useValue: commonConnection});
+    container.register<DataSource>('DataSource', {useValue: commonConnection});
 
-    // create connection for customer
-    const mobilityConnection: Connection = await createMobilityConnection();
-    const keolisConnection: Connection = await createKeolisConnection();
+    // create DataSource for customer
+    const mobilityConnection: DataSource = await createMobilityConnection();
+    const keolisConnection: DataSource = await createKeolisConnection();
 
     // sign di for DI container
-    container.register<Connection>('MobilityConnection', {useValue: mobilityConnection});
-    container.register<Connection>('KeolisConnection', {useValue: keolisConnection});
+    container.register<DataSource>('MobilityConnection', {useValue: mobilityConnection});
+    container.register<DataSource>('KeolisConnection', {useValue: keolisConnection});
 
     // Đăng ký controller và service vào DI container
     container.register("TicketService", {useClass: TicketService});

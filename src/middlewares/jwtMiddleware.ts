@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 export function jwtMiddleware(req: Request, res: Response, next: NextFunction) {
     // Kiểm tra xem request có chứa JWT không
     const token = req.headers.authorization?.split(' ')[1];
+    console.log('------------token: ', token);
     if (!token) {
         return res.status(401).json({message: 'Token không hợp lệ'});
     }
@@ -21,7 +22,8 @@ export function jwtMiddleware(req: Request, res: Response, next: NextFunction) {
         }
         req.userId = decodedToken.userId; // Lưu userId vào request để sử dụng ở middleware tiếp theo
         req.customerType = decodedToken.customerType; // Lưu userId vào request để sử dụng ở middleware tiếp theo
-        next(); // Chuyển tiếp request tới middleware tiếp theo
+        console.log('------------decodedToken: ',decodedToken);
+        // next(); // Chuyển tiếp request tới middleware tiếp theo
     } catch (error) {
         return res.status(401).json({message: 'Token không hợp lệ'});
     }

@@ -2,7 +2,7 @@ import {Connection} from 'typeorm';
 import {inject, injectable} from 'tsyringe';
 import {BaseTicketService} from "../../common/ticketService";
 import {CommonError} from "../../../errors/CommonError";
-import {User} from "../../../models/customers/keolis/ticketModel";
+import {Ticket} from "../../../models/customers/keolis/ticketModel";
 
 @injectable()
 export class TicketService extends BaseTicketService {
@@ -19,10 +19,8 @@ export class TicketService extends BaseTicketService {
     }
 
     async saveUser(): Promise<any[]> {
-        const user = new User();
-        user.firstName = "Timber";
-        user.lastName = "Saw";
-        user.age = 26;
+        const user = new Ticket();
+        user.title = "Saw";
         await this.connection.manager.save(user);
         return await this.connection.query('SELECT * FROM user');
     }
